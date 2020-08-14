@@ -94,10 +94,9 @@ def priority(dictionarylist):
                 P += 1
             elif _vardict.get("Norm_var_name") == "Theta":
                 Theta = _vardict.get("Norm_value")
-                if Theta >= 1e-4:
-                    P += 1
-                else:
-                    P += 0.5
+                if Theta == 0:
+                    return 0
+                P += 1
             else:
                 if _vardict.get("Norm_value") != _vardict.get("default value"):
                     return 0

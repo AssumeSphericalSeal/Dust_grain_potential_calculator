@@ -190,7 +190,11 @@ class Norm_v(Norm):
     def getnormfactor(self):
         _T_i = self.getvarvalue("Ion temperature")
         _m_i = self.getvarvalue("Ion mass")
-        if _T_i == 0:
+        if type(_T_i) == np.ndarray:
+            for i in range(len(_T_i)):
+                if _T_i[i] == 0:
+                    return 1
+        elif _T_i == 0:
             return 1
         return np.sqrt(2 * k_B * _T_i / _m_i)
 
